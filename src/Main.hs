@@ -9,12 +9,28 @@ import           System.Environment
 
 main :: IO ()
 main = do
-  cmdArgs <- getArgs
+  cmdArgs <- getArgs >>= \args -> return $ case args of
+    [] -> ["no option"]
+    xs -> xs
 
-  case head cmdArgs of 
-    "ticker" -> getTickerData
-    "orders" -> getOrdersData
-    _        -> print ("No option selected!\n")
+  case lookup (head cmdArgs) availableOptions of
+    Just option -> option
+    Nothing -> putStrLn (getErrorMessage)
+
+availableOptions :: [(String, IO ())]
+availableOptions = [("ticker", getTickerData)
+                   ,("orders", getOrdersData)
+                   ]
+
+getOptionsNames :: [(String, IO ())] -> [String]
+getOptionsNames (x:xs) = fst x : getOptionsNames xs
+getOptionsNames [] = []
+
+getErrorMessage :: String
+getErrorMessage = "Opção inválida selecionada! Por favor, execute a aplicação " 
+              ++ "selecionando uma das opções válidas: " 
+              ++ (show . getOptionsNames $ availableOptions)
+              ++ "\nEx: hs-trade orders"
 
 getTickerData :: IO ()  
 getTickerData = do
