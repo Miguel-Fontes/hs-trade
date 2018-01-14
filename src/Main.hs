@@ -19,7 +19,7 @@ main = do
 
 availableOptions :: [(String, IO ())]
 availableOptions = [("ticker", getTickerData)
-                   ,("orders", getOrdersData)
+                   ,("ofertas", getOrdersData)
                    ]
 
 getOptionsNames :: [(String, IO ())] -> [String]
@@ -30,7 +30,7 @@ getErrorMessage :: String
 getErrorMessage = "Opção inválida selecionada! Por favor, execute a aplicação " 
               ++ "selecionando uma das opções válidas: " 
               ++ (show . getOptionsNames $ availableOptions)
-              ++ "\nEx: hs-trade orders"
+              ++ "\nEx: hs-trade ofertas"
 
 getTickerData :: IO ()  
 getTickerData = do
