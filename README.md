@@ -22,7 +22,7 @@ Exemplo:
     hs-trade ofertas
 
 ## TODO
-- [] Formatar output de Ticker
+- [ ] Formatar output de Ticker
 
 ## Estórias
 - [x] Como um usuário, desejo obter o Ticker da plataforma, para que possa saber estatísticas úteis das últimas 24h de operações
