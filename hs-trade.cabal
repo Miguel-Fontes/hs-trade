@@ -22,3 +22,5 @@ executable hs-trade
                      , aeson
                      , bytestring
                      , text
+  other-modules:       Bitcointrade.Order
+                     , Bitcointrade.Ticker

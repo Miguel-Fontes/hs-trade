@@ -1,11 +1,18 @@
-{-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Bitcointrade.Order where
+module Bitcointrade.Order (
+    Entries,
+    getOrders,
+    numberOfAsks,
+    numberOfBids,
+    averageAskValue,
+    averageBidValue,
+    totalAsksValue,
+    totalBidsValue
+) where
 
 import           Control.Monad
 import           Data.Aeson
-import           Data.Foldable        (asum)
 import           GHC.Generics
 import           Network.HTTP.Conduit
 
@@ -24,16 +31,16 @@ instance FromJSON Message where
 data Entries = Entries
   { bids :: [Order]
   , asks :: [Order]
-  } deriving (Show, Generic)
+  } deriving (Show)
 
 instance FromJSON Entries where
   parseJSON (Object v) = Entries <$> v .: "bids" <*> v .: "asks"
 
 data Order = Order
-  { unit_price :: Float
+  { unit_price :: Double
   , code       :: String
-  , amount     :: Float
-  } deriving (Show, Generic)
+  , amount     :: Double
+  } deriving (Show)
 
 instance FromJSON Order where
   parseJSON (Object v) =
@@ -51,3 +58,35 @@ getOrders = do
     case (eitherDecode response :: Either String Message) of
       Left err                 -> Left err
       Right (Message _ orders) -> Right orders
+
+numberOfAsks :: Entries -> Int
+numberOfAsks = length . asks
+
+numberOfBids :: Entries -> Int
+numberOfBids = length . bids
+
+averageAskValue :: Entries -> Double
+averageAskValue = calculateAverageTradesValue . asks
+
+averageBidValue :: Entries -> Double
+averageBidValue = calculateAverageTradesValue . bids
+
+totalValue :: Order -> Double
+totalValue (Order unitPrice _ amount) = unitPrice * amount
+
+calculateAverageTradesValue :: [Order] -> Double
+calculateAverageTradesValue orders = 
+    let stats = foldl step (0, 0) orders
+    in  calculateAverage stats
+      where step (sum, total) order = (sum + totalValue order, total + 1)
+            calculateAverage (sum, total) = sum / total
+
+totalAsksValue :: Entries -> Double
+totalAsksValue = calculateTotalValue . asks
+
+totalBidsValue :: Entries -> Double
+totalBidsValue = calculateTotalValue . bids
+
+calculateTotalValue :: [Order] -> Double
+calculateTotalValue = foldl step 0
+    where step sum order = sum + totalValue order
