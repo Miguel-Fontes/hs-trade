@@ -8,7 +8,10 @@ module Bitcointrade.Order (
     averageAskValue,
     averageBidValue,
     totalAsksValue,
-    totalBidsValue
+    totalBidsValue,
+    generateAsksOrderGroups,
+    generateBidsOrderGroups,
+    prettify
 ) where
 
 import           Control.Monad
@@ -90,3 +93,27 @@ totalBidsValue = calculateTotalValue . bids
 calculateTotalValue :: [Order] -> Double
 calculateTotalValue = foldl step 0
     where step sum order = sum + totalValue order
+
+type OrderGroup = (Double, Int)
+
+generateAsksOrderGroups :: Double -> Double -> Entries -> [OrderGroup]
+generateAsksOrderGroups initial step = (generateOrderGroups initial step) . asks
+
+generateBidsOrderGroups :: Double -> Double -> Entries -> [OrderGroup]
+generateBidsOrderGroups initial step = (generateOrderGroups initial step) . bids
+
+
+generateOrderGroups :: Double -> Double -> [Order] -> [OrderGroup]
+generateOrderGroups _ _ [] = []
+generateOrderGroups initial step orders = let (cOrders, orderGroup) = group (orders, (initial, 0))
+                                           in orderGroup : generateOrderGroups (initial + step) step cOrders
+  where group ([], groups) = ([], groups)
+        group ((v:vs), (limit, n)) 
+            | unit_price v <= limit = group (vs, (limit, n + 1))
+            | otherwise = (v:vs, (limit, n))
+
+prettify :: [OrderGroup] -> String
+prettify = (foldr step "")
+    where step (group, count) acc
+              | count > 0 = show group ++ ": " ++ show count ++ "\n" ++ acc
+              | otherwise = acc
