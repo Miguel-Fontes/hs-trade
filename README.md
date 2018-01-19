@@ -23,8 +23,10 @@ Exemplo:
 
 ## TODO
 - [ ] Formatar output de Ticker
+- [ ] Alterar Double para tipo de dados que suporte valores financeiros maiores
 
 ## Estórias
 - [x] Como um usuário, desejo obter o Ticker da plataforma, para que possa saber estatísticas úteis das últimas 24h de operações
 - [x] Como um usuário, desejo obter o livro de ofertas da plataforma, para que eu possa saber estatísticas úteis das últimas operações como: valor total em compras / vendas, média de valor de compra / venda e diferença entre valor total de compras e vendas
 - [ ] Como um usuário, desejo obter os dados de Trades da plataforma em um gráfico Candlestick, para que possa ter uma visão do histórico de operações executadas e planejar minhas próximas operações e estratégias
+- [ ] Como um usuário, desejo visualizar as ordens de compra em venda por uma valor de distribuição arbitrário, para que eu possa ter uma visão de alto nível das ofertas em livro e identificar tendências do mercado
