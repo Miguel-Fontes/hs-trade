@@ -5,6 +5,7 @@ module Bitcointrade.Ticker where
 import           Control.Monad
 import           Data.Aeson
 import           Network.HTTP.Conduit
+import           Format.String
 
 data Message = Message
   { message :: String
@@ -27,7 +28,21 @@ data Ticker = Ticker
   , sell            :: Float
   , buy             :: Float
   , date            :: String
-  } deriving (Show)
+  } 
+
+format = rpad 16 ' '
+vFormat = lpad 
+
+instance Show Ticker where
+  show (Ticker high low volume trades_quantity lastTrade sell buy date ) =
+    format "high"            ++ ": R$ "  ++ (show high)            ++ "\n" ++ 
+    format "low"             ++ ": R$ "  ++ (show low)             ++ "\n" ++
+    format "volume"          ++ ": BTC " ++ (show volume)          ++ "\n" ++
+    format "trades_quantity" ++ ": "     ++ (show trades_quantity) ++ "\n" ++
+    format "lastTrade"       ++ ": R$ "  ++ (show lastTrade)       ++ "\n" ++
+    format "sell"            ++ ": R$ "  ++ (show sell)            ++ "\n" ++
+    format "buy"             ++ ": R$ "  ++ (show buy)             ++ "\n" ++
+    format "date"            ++ ": "     ++ (show date)            ++ "\n" 
 
 instance FromJSON Ticker where
   parseJSON (Object v) =
@@ -41,6 +56,9 @@ instance FromJSON Ticker where
     v .: "date"
 
   parseJSON _ = mzero
+
+getLast :: Ticker -> Float
+getLast (Ticker _ _ _ _ lastTrade _ _ _) = lastTrade
 
 getTicker :: IO (Either String Ticker)
 getTicker = do
