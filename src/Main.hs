@@ -18,8 +18,8 @@ main = do
     Nothing -> putStrLn (getErrorMessage)
 
 availableOptions :: [(String, IO ())]
-availableOptions = [("ticker", getTickerData)
-                   ,("ofertas", getOrdersData)
+availableOptions = [("ticker", getTickerAction)
+                   ,("ofertas", getOrdersAction)
                    ]
 
 getOptionsNames :: [(String, IO ())] -> [String]
@@ -32,15 +32,15 @@ getErrorMessage = "Opção inválida selecionada! Por favor, execute a aplicaç�
               ++ (show . getOptionsNames $ availableOptions)
               ++ "\nEx: hs-trade ofertas"
 
-getTickerData :: IO ()  
-getTickerData = do
+getTickerAction :: IO ()  
+getTickerAction = do
   tickerResponse <- getTicker
   case tickerResponse of
     Left err -> print err
-    Right t  -> print t
+    Right t  -> putStrLn ("> Estatísticas das ultimas 24h (Ticker)\n" ++ (show t))
 
-getOrdersData :: IO ()
-getOrdersData = do
+getOrdersAction :: IO ()
+getOrdersAction = do
   ordersResponse <- getOrders
   case ordersResponse of
     Left err -> print err
@@ -48,6 +48,7 @@ getOrdersData = do
       let totalBids = totalBidsValue orders
           totalAsks = totalAsksValue orders
 
+      putStrLn "> Estatísticas do Book de Ordens"
       printf "%-20s : %15d\n"      "Qtd vendas"    (numberOfAsks orders)
       printf "%-20s : R$ %12.2f\n" "Média val vendas" (averageAskValue orders)
       printf "%-20s : R$ %12.2f\n" "Valor tot vendas"  totalAsks
