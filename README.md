@@ -21,6 +21,11 @@ Exemplo:
     hs-trade ticker
     hs-trade ofertas
 
+## CI Status
+- Development: [![Build Status](https://travis-ci.org/Miguel-Fontes/hs-trade.svg?branch=development)](https://travis-ci.org/Miguel-Fontes/hs-trade)
+- Master: [![Build Status](https://travis-ci.org/Miguel-Fontes/hs-trade.svg?branch=master)](https://travis-ci.org/Miguel-Fontes/hs-trade)
+
+
 ## TODO
 - [x] Formatar output de Ticker
 - [ ] Alterar Double para tipo de dados que suporte valores financeiros maiores
