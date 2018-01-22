@@ -26,13 +26,31 @@ Exemplo:
 - Master: [![Build Status](https://travis-ci.org/Miguel-Fontes/hs-trade.svg?branch=master)](https://travis-ci.org/Miguel-Fontes/hs-trade)
 
 
-## TODO
-- [x] Formatar output de Ticker
-- [ ] Alterar Double para tipo de dados que suporte valores financeiros maiores
+## Tarefas, Histórias e Roadmap
+### v1.0.1
+- [x] Ticker - Formatar output de Ticker (#E1)
+- [ ] Ofertas + Ticker - Alterar Double para tipo de dados que suporte valores financeiros maiores (#E1, #E2)
+- [ ] CI - Criar estrutura de testes (#E7)
+- [ ] CI - Adicionar testes e configurar Travis (#E7)
+- [ ] Ofertas - Exibir mais informações sobre os ranges de trades nos dados agrupados (#E4)
+- [ ] Ofertas - Exibir para venda e compra, o trade no topo, fundo e meio do Book de Ofertas (#E4)
+
+### V1.0.2
+- [ ] Criar pacote DEB para aplicação (#E6)
+- [ ] Automatizar criação de pacote DEB (#E6)
+- [ ] Implementar library de CLI App para Projeto (#E5)
+- [ ] Criar menu de ajuda, acessível via HELP (#E5)
+- [ ] Exibir versão da aplicação em Menu --version (#E5)
+
+### Pool
+- [ ] Obter dados de Trades da Plataforma (#E3)
+- [ ] Gerar gráfico Candlestick com Trades (#E3)
 
 ## Estórias
-- [x] Como um usuário, desejo obter o Ticker da plataforma, para que possa saber estatísticas úteis das últimas 24h de operações
-- [x] Como um usuário, desejo obter o livro de ofertas da plataforma, para que eu possa saber estatísticas úteis das últimas operações como: valor total em compras / vendas, média de valor de compra / venda e diferença entre valor total de compras e vendas
-- [ ] Como um usuário, desejo obter os dados de Trades da plataforma em um gráfico Candlestick, para que possa ter uma visão do histórico de operações executadas e planejar minhas próximas operações e estratégias
-- [ ] Como um usuário, desejo visualizar as ordens de compra em venda por uma valor de distribuição arbitrário, para que eu possa ter uma visão de alto nível das ofertas em livro e identificar tendências do mercado
-- [ ] Como um usuário, desejo ter acesso à um guia sobre a utilização da aplicação, para que eu possa conhecer todas as opções disponíveis e aprender sobre como utilizar a aplicação.
+- [x] #E1 - Como um usuário, desejo obter o Ticker da plataforma, para que possa saber estatísticas úteis das últimas 24h de operações
+- [x] #E2 - Como um usuário, desejo obter o livro de ofertas da plataforma, para que eu possa saber estatísticas úteis das últimas operações como: valor total em compras / vendas, média de valor de compra / venda e diferença entre valor total de compras e vendas
+- [ ] #E3 - Como um usuário, desejo obter os dados de Trades da plataforma em um gráfico Candlestick, para que possa ter uma visão do histórico de operações executadas e planejar minhas próximas operações e estratégias
+- [ ] #E4 - Como um usuário, desejo visualizar as ordens de compra e venda por uma valor de distribuição arbitrário, para que eu possa ter uma visão de alto nível das ofertas em livro e identificar tendências do mercado
+- [ ] #E5 - Como um usuário, desejo ter acesso à um guia sobre a utilização da aplicação, para que eu possa conhecer todas as opções disponíveis e aprender sobre como utilizar a aplicação.
+- [ ] #E6 - Como um usuário, desejo instalar a aplicação através de um Instalador / Package Manager, para que eu possa instalar e atualizar a aplicação com um único comando.
+- [ ] #E7 - Como um desenvolvedor, desejo que a aplicação esteja configurada em um pipeline de integração contínua, para que eu possa ter certeza de que o codebase está em bom estado, identificar problemas cedo e corrijí-los rapidamente.
