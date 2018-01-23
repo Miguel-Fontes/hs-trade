@@ -29,7 +29,7 @@ Exemplo:
 ## Tarefas, Histórias e Roadmap
 ### v1.0.1
 - [x] Ticker - Formatar output de Ticker (#E1)
-- [ ] Ofertas + Ticker - Alterar Double para tipo de dados que suporte valores financeiros maiores (#E1, #E2)
+- [x] Ofertas + Ticker - Corrigir exibição de valores em notação científica (#E1, #E2)
 - [ ] CI - Criar estrutura de testes (#E7)
 - [ ] CI - Adicionar testes e configurar Travis (#E7)
 - [ ] Ofertas - Exibir mais informações sobre os ranges de trades nos dados agrupados (#E4)
@@ -54,3 +54,4 @@ Exemplo:
 - [ ] #E5 - Como um usuário, desejo ter acesso à um guia sobre a utilização da aplicação, para que eu possa conhecer todas as opções disponíveis e aprender sobre como utilizar a aplicação.
 - [ ] #E6 - Como um usuário, desejo instalar a aplicação através de um Instalador / Package Manager, para que eu possa instalar e atualizar a aplicação com um único comando.
 - [ ] #E7 - Como um desenvolvedor, desejo que a aplicação esteja configurada em um pipeline de integração contínua, para que eu possa ter certeza de que o codebase está em bom estado, identificar problemas cedo e corrijí-los rapidamente.
+- [ ] #E8 - Como um usuário, desejo ter acesso à dados passados, para que eu possa visualizar a evolução do mercado e identificar tendências
