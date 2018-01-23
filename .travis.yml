@@ -11,7 +11,7 @@ before_install:
 - export PATH=/opt/ghc/8.2.2/bin:$PATH
 
 install:
-  - stack install
+  - stack install --test
 
 sudo: false
 

@@ -30,8 +30,8 @@ Exemplo:
 ### v1.0.1
 - [x] Ticker - Formatar output de Ticker (#E1)
 - [x] Ofertas + Ticker - Corrigir exibição de valores em notação científica (#E1, #E2)
-- [ ] CI - Criar estrutura de testes (#E7)
-- [ ] CI - Adicionar testes e configurar Travis (#E7)
+- [ ] CI - Criar estrutura de testes e configurar Travis (#E7)
+- [ ] CI - Adicionar testes (#E7)
 - [ ] Ofertas - Exibir mais informações sobre os ranges de trades nos dados agrupados (#E4)
 - [ ] Ofertas - Exibir para venda e compra, o trade no topo, fundo e meio do Book de Ofertas (#E4)
 
