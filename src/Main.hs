@@ -62,9 +62,9 @@ getOrdersAction = do
       printf "%-20s : R$ %12.2f\n" "Tot vendas-compras" (totalAsks - totalBids)
       putStrLn ("")
 
-      printf "Distribuição de ordens de venda (intervalo=10000; x = no vendas até x-10000)\n%s" (prettify $ generateAsksOrderGroups 0 10000 orders)
+      printf "> Distribuição de ordens de venda (intervalo=10000; x = no vendas até x-10000)\n%s" (prettify $ generateAsksOrderGroups 0 10000 orders)
       putStrLn ("")
 
-      printf "Distribuição de ordens de compra (intervalo=10000; x = no compras até x-10000)\n%s" (prettify $ generateBidsOrderGroups 0 10000 orders)
+      printf "> Distribuição de ordens de compra (intervalo=10000; x = no compras até x-10000)\n%s" (prettify $ generateBidsOrderGroups 0 10000 orders)
       putStrLn ("")
       
