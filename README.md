@@ -45,6 +45,7 @@ Exemplo:
 ### Pool
 - [ ] Obter dados de Trades da Plataforma (#E3)
 - [ ] Gerar gráfico Candlestick com Trades (#E3)
+- [ ] Mover lógica de binário Main para Módulo especializado (#??)
 
 ## Estórias
 - [x] #E1 - Como um usuário, desejo obter o Ticker da plataforma, para que possa saber estatísticas úteis das últimas 24h de operações
