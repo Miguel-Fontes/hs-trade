@@ -18,6 +18,7 @@ import           Control.Monad
 import           Data.Aeson
 import           GHC.Generics
 import           Network.HTTP.Conduit
+import           Format.Numeric (showDouble)
 
 data Message = Message
   { message      :: String
@@ -115,5 +116,6 @@ generateOrderGroups initial step orders = let (cOrders, orderGroup) = group (ord
 prettify :: [OrderGroup] -> String
 prettify = (foldr step "")
     where step (group, count) acc
-              | count > 0 = show group ++ ": " ++ show count ++ "\n" ++ acc
+              | count > 0 = showDouble group ++ ": " ++ show count ++ "\n" ++ acc
               | otherwise = acc
+
