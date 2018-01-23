@@ -6,6 +6,7 @@ import           Control.Monad
 import           Data.Aeson
 import           Network.HTTP.Conduit
 import           Format.String
+import           Format.Numeric
 
 data Message = Message
   { message :: String
@@ -35,14 +36,14 @@ vFormat = lpad
 
 instance Show Ticker where
   show (Ticker high low volume trades_quantity lastTrade sell buy date ) =
-    format "high"            ++ ": R$ "  ++ (show high)            ++ "\n" ++ 
-    format "low"             ++ ": R$ "  ++ (show low)             ++ "\n" ++
-    format "volume"          ++ ": BTC " ++ (show volume)          ++ "\n" ++
-    format "trades_quantity" ++ ": "     ++ (show trades_quantity) ++ "\n" ++
-    format "lastTrade"       ++ ": R$ "  ++ (show lastTrade)       ++ "\n" ++
-    format "sell"            ++ ": R$ "  ++ (show sell)            ++ "\n" ++
-    format "buy"             ++ ": R$ "  ++ (show buy)             ++ "\n" ++
-    format "date"            ++ ": "     ++ (show date)            ++ "\n" 
+    format "high"            ++ ": R$ "  ++ (showDouble high)            ++ "\n" ++ 
+    format "low"             ++ ": R$ "  ++ (showDouble low)             ++ "\n" ++
+    format "volume"          ++ ": BTC " ++ (showDouble volume)          ++ "\n" ++
+    format "trades_quantity" ++ ": "     ++ (show       trades_quantity) ++ "\n" ++
+    format "lastTrade"       ++ ": R$ "  ++ (showDouble lastTrade)       ++ "\n" ++
+    format "sell"            ++ ": R$ "  ++ (showDouble sell)            ++ "\n" ++
+    format "buy"             ++ ": R$ "  ++ (showDouble buy)             ++ "\n" ++
+    format "date"            ++ ": "     ++ (show       date)            ++ "\n" 
 
 instance FromJSON Ticker where
   parseJSON (Object v) =
