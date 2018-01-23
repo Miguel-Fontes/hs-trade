@@ -21,13 +21,13 @@ instance FromJSON Message where
   parseJSON _ = mzero
 
 data Ticker = Ticker
-  { high            :: Float
-  , low             :: Float
-  , volume          :: Float
+  { high            :: Double
+  , low             :: Double
+  , volume          :: Double
   , trades_quantity :: Integer
-  , last            :: Float
-  , sell            :: Float
-  , buy             :: Float
+  , last            :: Double
+  , sell            :: Double
+  , buy             :: Double
   , date            :: String
   } 
 
@@ -58,7 +58,7 @@ instance FromJSON Ticker where
 
   parseJSON _ = mzero
 
-getLast :: Ticker -> Float
+getLast :: Ticker -> Double
 getLast (Ticker _ _ _ _ lastTrade _ _ _) = lastTrade
 
 getTicker :: IO (Either String Ticker)
