@@ -1,6 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Bitcointrade.Ticker where
+module Bitcointrade.Ticker (
+  Ticker (Ticker),
+  getTicker
+) where
 
 import           Control.Monad
 import           Data.Aeson
@@ -57,9 +60,6 @@ instance FromJSON Ticker where
     v .: "date"
 
   parseJSON _ = mzero
-
-getLast :: Ticker -> Double
-getLast (Ticker _ _ _ _ lastTrade _ _ _) = lastTrade
 
 getTicker :: IO (Either String Ticker)
 getTicker = do

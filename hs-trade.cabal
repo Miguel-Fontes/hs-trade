@@ -13,15 +13,42 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
 
+
 executable hs-trade
-  hs-source-dirs:      src
+  hs-source-dirs:      bin
   main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , hs-trade
+
+library 
+  hs-source-dirs:      src
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                      , http-conduit
                      , aeson
                      , bytestring
                      , text
-  other-modules:       Bitcointrade.Order
+  exposed-modules:     Bitcointrade.Order
                      , Bitcointrade.Ticker
                      , Format.String
+                     , Format.Numeric
+                     
+test-suite hs-trade-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , hspec
+                     , QuickCheck
+                     , hs-trade
+  other-modules:       Bitcointrade.OrderTest
+                     , Bitcointrade.TickerTest
+                     , Format.StringTest
+                     , Format.NumericTest
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/Miguel-Fontes/hs-trade
