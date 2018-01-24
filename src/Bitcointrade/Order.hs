@@ -1,12 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Bitcointrade.Order (
-    Entries,
+    Entries (Entries),
+    Order (Order),
     getOrders,
     numberOfAsks,
     numberOfBids,
     averageAskValue,
     averageBidValue,
+    totalValue,
     totalAsksValue,
     totalBidsValue,
     generateAsksOrderGroups,
