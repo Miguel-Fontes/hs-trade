@@ -31,7 +31,8 @@ Exemplo:
 - [x] Ticker - Formatar output de Ticker (#E1)
 - [x] Ofertas + Ticker - Corrigir exibição de valores em notação científica (#E1, #E2)
 - [x] CI - Criar estrutura de testes e configurar Travis (#E7)
-- [ ] CI - Adicionar testes, atingindo alta cobertura (#E7)
+- [x] CI - Adicionar testes, atingindo alta cobertura (#E7)
+- [ ] CI - Automatizar geração de GitHub Release via Travis (#E7)
 - [ ] Ofertas - Exibir mais informações sobre os ranges de trades nos dados agrupados (limites do range; 30.000 ~ 40.000: 132) (#E4)
 - [ ] Ofertas - Exibir para venda e compra, o trade no topo, fundo e meio do Book de Ofertas (#E4)
 
@@ -54,5 +55,7 @@ Exemplo:
 - [ ] #E4 - Como um usuário, desejo visualizar as ordens de compra e venda por uma valor de distribuição arbitrário, para que eu possa ter uma visão de alto nível das ofertas em livro e identificar tendências do mercado
 - [ ] #E5 - Como um usuário, desejo ter acesso à um guia sobre a utilização da aplicação, para que eu possa conhecer todas as opções disponíveis e aprender sobre como utilizar a aplicação.
 - [ ] #E6 - Como um usuário, desejo instalar a aplicação através de um Instalador / Package Manager, para que eu possa instalar e atualizar a aplicação com um único comando.
-- [ ] #E7 - Como um desenvolvedor, desejo que a aplicação esteja configurada em um pipeline de integração contínua, para que eu possa ter certeza de que o codebase está em bom estado, identificar problemas cedo e corrijí-los rapidamente.
-- [ ] #E8 - Como um usuário, desejo ter acesso à dados passados, para que eu possa visualizar a evolução do mercado e identificar tendências
+- [ ] #E7 - Como um desenvolvedor, desejo que a aplicação esteja configurada em um pipeline de integração contínua, para que eu possa ter certeza de que o codebase está em bom estado, identificar problemas cedo e corrigí-los rapidamente.
+- [ ] #E8 - Como um usuário, desejo ter visualizar dados passados pelo aplicativo, para que eu possa visualizar a evolução do mercado e identificar tendências
+- [ ] #E9 - Como um usuário, desejo exportar os dados de Ticker para um arquivo persistente e em formato compatível com worksheet, para que eu possa analisar e criar estatísticas próprias
+- [ ] #E10 - Como um usuário, desejo exportar os dados de Ordens para um arquivo persistente e em formato compatível com worksheet, para que eu possa analisar e criar estatísticas próprias
