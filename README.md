@@ -26,7 +26,7 @@ Exemplo:
     hs-trade ofertas
 
 ## Tarefas, Histórias e Roadmap
-### v1.0.1
+### v1.1.0
 - [x] Ticker - Formatar output de Ticker (#E1)
 - [x] Ofertas + Ticker - Corrigir exibição de valores em notação científica (#E1, #E2)
 - [x] CI - Criar estrutura de testes e configurar Travis (#E7)
@@ -35,7 +35,7 @@ Exemplo:
 - [ ] Ofertas - Exibir mais informações sobre os ranges de trades nos dados agrupados (limites do range; 30.000 ~ 40.000: 132) (#E4)
 - [ ] Ofertas - Exibir para venda e compra, o trade no topo, fundo e meio do Book de Ofertas (#E4)
 
-### V1.0.2
+### v1.2.0
 - [ ] Criar pacote DEB para aplicação (#E6)
 - [ ] Automatizar criação de pacote DEB (#E6)
 - [ ] Implementar library de CLI App para Projeto (#E5)
