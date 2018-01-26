@@ -32,6 +32,7 @@ cache:
   - $HOME/.stack/programs
   - $HOME/.stack/setup-exe-cache
   - $HOME/.stack/snapshots
+  - /opt/ghc/8.2.2/bin
   
 
 before_deploy:
@@ -59,4 +60,6 @@ deploy:
 
 notifications:
   slack:
+    on_success: always
+    on_failure: always
     secure: VrKPNRuPLE/qttShGZ82b0nYtcO88FvFaroaJfev8zHP8G1e3sDVQiV+lCKcOYI8zVvDFw7Ab2NKB4GDPlUfX0/Lz67d6wzvlg5Pie6/yp8DABgPp84/iELNzhfXzqovNM2Iu4gcYkKSaen2lf1PgW42luHBBh0Rh/cOZB52X0pUBHtAFqMW/J3zzVUAKIJ1ocDrzi6cG3SfYfEHdxrItXEU+28JWVmiheoqZAMBXe24D7wT63pTHSvktKmZsqd1piXgZeK5ES+C5B4ovjDEmHntvEJhXXIAiTsDDv/hRDbb8Geh+ZH/hMXvAOdBSCnDUuJyf9o8mPJknmqhgFYnpm5fbu0uKHB4jjPX+RmKTb15UWIBMRCA1Vmd0psiTjdxJClmbnK9q+avjuI9FYkXbxtEcF9TSQM3TPmJ/UKOcFr/o/S18DoWpRHum90bjayieF7FdqZU1FeSu8I4jgfyS1Jf7mAJs9XGftGNAeKeFCRos2U4Fsem0ZJ2FRmqtx7xLlF3Yt8L7oaWNP01G95cSS9fGXtD5wJVQt8JDciRl13QRmjQkjd6vobiknwGa87suwZ9Nbans7KulS09V6tU2xrnDwduGs4QEIMoMtsZroZRbkt0j6X3ZVOxXRVOJoiJ9q1ur9W2iEG0x6sCz3KQO/bkO/haBX3IdRFJ7kIOZvg=
