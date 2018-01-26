@@ -45,11 +45,12 @@ Exemplo:
 ### Pool
 - [ ] Obter dados de Trades da Plataforma (#E3)
 - [ ] Gerar gráfico Candlestick com Trades (#E3)
-- [ ] Mover lógica de binário Main para Módulo especializado (#??)
-- [ ] Configurar Travis para construir aplicação em OS Windows (#??)
-- [ ] Remover ações IO () de módulos Ticker e Orders (#??)
-- [ ] Remover de módulos Order e Ticker formatação para console (#??)
-- [ ] Criar Datatype para Ordergroup e remover a necessidade da função prettify
+- [ ] Mover lógica de exibição para console de binário Main para Módulo especializado (#E12)
+- [ ] Configurar Travis para construir aplicação em OS Windows (#14)
+- [ ] Configurar Travis para construir aplicação em OS OSX (#14)
+- [ ] Remover ações IO () de módulos Ticker e Orders (#13)
+- [ ] Remover de módulos Order e Ticker formatação para console (#E12)
+- [ ] Criar Datatype para Ordergroup e remover a necessidade da função prettify(#E12)
 
 ## Estórias
 - [x] #E1 - Como um usuário, desejo obter o Ticker da plataforma, para que possa saber estatísticas úteis das últimas 24h de operações
@@ -62,3 +63,7 @@ Exemplo:
 - [ ] #E8 - Como um usuário, desejo ter visualizar dados passados pelo aplicativo, para que eu possa visualizar a evolução do mercado e identificar tendências
 - [ ] #E9 - Como um usuário, desejo exportar os dados de Ticker para um arquivo persistente e em formato compatível com worksheet, para que eu possa analisar e criar estatísticas próprias
 - [ ] #E10 - Como um usuário, desejo visualizar as ordens de compra e venda do topo, meio, e fundo do book de ofertas, para ter uma visão da varição de preços do mercado
+- [ ] #E11 - Como um usuário, desejo exportar os dados de Ofertas para um arquivo persistente e em formato compatível com worksheet, para que eu possa analisar e criar estatísticas próprias
+- [ ] #E12 - Como um desenvolvedor, desejo que os módulos de processamento de dados de Ofertas e Trade desconheçam o mecanismo de entrega de seus dados ao cliente, garantindo que estes possam ser reutilizados com outras UIs posteriormente
+- [ ] #13 - Como um desenvolvedor, desejo que as ações de IO () sejam removidas dos módulos Ofertas e Trade, garantindo que estes não conheçam a origem dos dados e permanecem apenas com funções puras
+- [ ] #14 - Como um usuário, desejo utilizar a aplicação nas plataformas Windows, Linux e OSX, para que eu possa acessar a aplicação em qualquer estação que possua
