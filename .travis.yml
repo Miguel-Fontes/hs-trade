@@ -1,30 +1,65 @@
 language: haskell
 ghc:
-  - "8.2.2"
+- 8.2.2
 
-# Credits https://docs.haskellstack.org/en/stable/travis_ci/
 before_install:
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
-- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards
+  --strip-components=1 -C ~/.local/bin '*/stack'
 - stack config set system-ghc --global true
 - export PATH=/opt/ghc/8.2.2/bin:$PATH
 
 install:
-  - stack install --test
-
+- stack install --test
 sudo: false
-
 script:
-  - stack --no-terminal --skip-ghc-check test
+- stack --no-terminal --skip-ghc-check test
+
+before_cache:
+ - rm -fv $HOME/.cabal/packages/hackage.haskell.org/build-reports.log
+ - rm -fv $HOME/.cabal/packages/hackage.haskell.org/00-index*
+ - rm -fv $HOME/.cabal/packages/hackage.haskell.org/01-index*
+ - rm -fv $HOME/.cabal/packages/hackage.haskell.org/*.json
 
 cache:
   directories:
   - $HOME/.stack
+  - $HOME/.ghc
+  - $HOME/.cabal
+  - $HOME/.stack/bin
+  - $HOME/.stack/precompiled
+  - $HOME/.stack/programs
+  - $HOME/.stack/setup-exe-cache
+  - $HOME/.stack/snapshots
+  - /opt/ghc/8.2.2/bin
+  
 
-addons:
-  apt:
-    sources:
-    - hvr-ghc
-    packages:
-    - ghc-8.2.2
+before_deploy:
+- tar -zcf $TRAVIS_BUILD_DIR/$STACK_LINUX_INSTALL_BIN/hs-trade-$TRAVIS_TAG.tar.gz $TRAVIS_BUILD_DIR/$STACK_LINUX_INSTALL_BIN/hs-trade
+
+deploy:
+- provider: releases
+  api_key: "$GITHUB_OAUTH_TOKEN"
+  file: "$TRAVIS_BUILD_DIR/$STACK_LINUX_INSTALL_BIN/hs-trade-$TRAVIS_TAG.tar.gz"
+  skip_cleanup: true
+  name: hstrade $TRAVIS_TAG
+  on:
+    tags: true
+    condition: $TRAVIS_TAG =~ ^v[0-9].[0-9].[0-9]$
+
+- provider: releases
+  api_key: "$GITHUB_OAUTH_TOKEN"
+  file: "$TRAVIS_BUILD_DIR/$STACK_LINUX_INSTALL_BIN/hs-trade-$TRAVIS_TAG.tar.gz"
+  skip_cleanup: true
+  name: hstrade $TRAVIS_TAG
+  prerelease: true
+  on:
+    tags: true
+    condition: $TRAVIS_TAG =~ ^.*(beta|alpha|pre).*$
+
+notifications:
+  slack:
+    on_success: always
+    on_failure: always
+    secure: VrKPNRuPLE/qttShGZ82b0nYtcO88FvFaroaJfev8zHP8G1e3sDVQiV+lCKcOYI8zVvDFw7Ab2NKB4GDPlUfX0/Lz67d6wzvlg5Pie6/yp8DABgPp84/iELNzhfXzqovNM2Iu4gcYkKSaen2lf1PgW42luHBBh0Rh/cOZB52X0pUBHtAFqMW/J3zzVUAKIJ1ocDrzi6cG3SfYfEHdxrItXEU+28JWVmiheoqZAMBXe24D7wT63pTHSvktKmZsqd1piXgZeK5ES+C5B4ovjDEmHntvEJhXXIAiTsDDv/hRDbb8Geh+ZH/hMXvAOdBSCnDUuJyf9o8mPJknmqhgFYnpm5fbu0uKHB4jjPX+RmKTb15UWIBMRCA1Vmd0psiTjdxJClmbnK9q+avjuI9FYkXbxtEcF9TSQM3TPmJ/UKOcFr/o/S18DoWpRHum90bjayieF7FdqZU1FeSu8I4jgfyS1Jf7mAJs9XGftGNAeKeFCRos2U4Fsem0ZJ2FRmqtx7xLlF3Yt8L7oaWNP01G95cSS9fGXtD5wJVQt8JDciRl13QRmjQkjd6vobiknwGa87suwZ9Nbans7KulS09V6tU2xrnDwduGs4QEIMoMtsZroZRbkt0j6X3ZVOxXRVOJoiJ9q1ur9W2iEG0x6sCz3KQO/bkO/haBX3IdRFJ7kIOZvg=
