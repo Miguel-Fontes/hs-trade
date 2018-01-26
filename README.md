@@ -1,6 +1,10 @@
 # hs-trade
 Breakable Toy para estudo de Haskell. Esta aplicação irá buscar os dados de trade da Api pública do Bitcointrade e exibir informações úteis utilizando estes dados como base.
 
+- Development: [![Build Status](https://travis-ci.org/Miguel-Fontes/hs-trade.svg?branch=development)](https://travis-ci.org/Miguel-Fontes/hs-trade)
+- Master: [![Build Status](https://travis-ci.org/Miguel-Fontes/hs-trade.svg?branch=master)](https://travis-ci.org/Miguel-Fontes/hs-trade)
+
+
 ## Build
 Para construir a aplicação, utilize o stack
 
@@ -21,18 +25,13 @@ Exemplo:
     hs-trade ticker
     hs-trade ofertas
 
-## CI Status
-- Development: [![Build Status](https://travis-ci.org/Miguel-Fontes/hs-trade.svg?branch=development)](https://travis-ci.org/Miguel-Fontes/hs-trade)
-- Master: [![Build Status](https://travis-ci.org/Miguel-Fontes/hs-trade.svg?branch=master)](https://travis-ci.org/Miguel-Fontes/hs-trade)
-
-
 ## Tarefas, Histórias e Roadmap
 ### v1.0.1
 - [x] Ticker - Formatar output de Ticker (#E1)
 - [x] Ofertas + Ticker - Corrigir exibição de valores em notação científica (#E1, #E2)
 - [x] CI - Criar estrutura de testes e configurar Travis (#E7)
 - [x] CI - Adicionar testes, atingindo alta cobertura (#E7)
-- [ ] CI - Automatizar geração de GitHub Release via Travis (#E7)
+- [x] CI - Automatizar geração de GitHub Release via Travis (#E7)
 - [ ] Ofertas - Exibir mais informações sobre os ranges de trades nos dados agrupados (limites do range; 30.000 ~ 40.000: 132) (#E4)
 - [ ] Ofertas - Exibir para venda e compra, o trade no topo, fundo e meio do Book de Ofertas (#E4)
 
