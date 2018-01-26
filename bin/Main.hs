@@ -48,6 +48,9 @@ getOrdersAction = do
       let totalBids = totalBidsValue orders
           totalAsks = totalAsksValue orders
 
+          asksHighlights = asksOrdersHighlights orders
+          bidsHighlights = bidsOrdersHighlights orders
+
       putStrLn "> Estatísticas do Book de Ordens"
       printf "%-20s : %15d\n"      "Qtd vendas"    (numberOfAsks orders)
       printf "%-20s : R$ %12.2f\n" "Média val vendas" (averageAskValue orders)
@@ -67,4 +70,12 @@ getOrdersAction = do
 
       printf "> Distribuição de ordens de compra (intervalo=10000; x = no compras até x-10000)\n%s" (prettify $ generateBidsOrderGroups 0 10000 orders)
       putStrLn ("")
+
+      printf "> Highlights de Compras\n%s" (show bidsHighlights)
+      putStrLn ("")
+
+      printf "> Highlights de Vendas\n%s" (show asksHighlights)
+      putStrLn ("")
+
+
       

@@ -34,8 +34,8 @@ data Ticker = Ticker
   , date            :: String
   } 
 
+format :: String -> String
 format = rpad 16 ' '
-vFormat = lpad 
 
 instance Show Ticker where
   show (Ticker high low volume trades_quantity lastTrade sell buy date ) =

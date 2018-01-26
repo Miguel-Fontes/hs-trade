@@ -3,6 +3,7 @@
 module Bitcointrade.Order (
     Entries (Entries),
     Order (Order),
+    TopOrders (TopOrders),
     getOrders,
     numberOfAsks,
     numberOfBids,
@@ -13,7 +14,9 @@ module Bitcointrade.Order (
     totalBidsValue,
     generateAsksOrderGroups,
     generateBidsOrderGroups,
-    prettify
+    prettify,
+    asksOrdersHighlights,
+    bidsOrdersHighlights
 ) where
 
 import           Control.Monad
@@ -21,6 +24,7 @@ import           Data.Aeson
 import           GHC.Generics
 import           Network.HTTP.Conduit
 import           Format.Numeric (showDouble)
+import           Format.String
 
 data Message = Message
   { message      :: String
@@ -56,6 +60,22 @@ instance FromJSON Order where
   
   parseJSON _ = mzero
 
+data TopOrders = TopOrders 
+  { top      :: Double
+  , medium   :: Double
+  , bottom   :: Double
+  } deriving (Eq)
+
+format :: String -> String
+format = rpad 16 ' '
+
+instance Show TopOrders where
+  show (TopOrders top medium bottom) = 
+    format "top"    ++ ": R$ " ++ showDouble top    ++ "\n" ++
+    format "medium" ++ ": R$ " ++ showDouble medium ++ "\n" ++
+    format "bottom" ++ ": R$ " ++ showDouble bottom ++ "\n"
+
+
 getOrders :: IO (Either String Entries)
 getOrders = do
   response <- simpleHttp "https://api.bitcointrade.com.br/v1/public/BTC/orders"
@@ -65,12 +85,14 @@ getOrders = do
       Left err                 -> Left err
       Right (Message _ orders) -> Right orders
 
+-- Number of Orders
 numberOfAsks :: Entries -> Int
 numberOfAsks = length . asks
 
 numberOfBids :: Entries -> Int
 numberOfBids = length . bids
 
+-- Order Total and Average Values
 averageAskValue :: Entries -> Double
 averageAskValue = calculateAverageTradesValue . asks
 
@@ -97,6 +119,8 @@ calculateTotalValue :: [Order] -> Double
 calculateTotalValue = foldl step 0
     where step sum order = sum + totalValue order
 
+
+-- Order Groups
 type OrderGroup = (Double, Int)
 
 generateAsksOrderGroups :: Double -> Double -> Entries -> [OrderGroup]
@@ -121,3 +145,19 @@ prettify = (foldr step "")
               | count > 0 = showDouble group ++ ": " ++ show count ++ "\n" ++ acc
               | otherwise = acc
 
+
+-- Order Highlights
+asksOrdersHighlights :: Entries -> TopOrders
+asksOrdersHighlights = extractOrderHighlights . asks
+
+bidsOrdersHighlights :: Entries -> TopOrders
+bidsOrdersHighlights = extractOrderHighlights . bids
+
+extractOrderHighlights :: [Order] -> TopOrders
+extractOrderHighlights xs = let numberOfOrders = length xs - 1
+                                first  = unit_price $ xs !! 0
+                                middle = unit_price $ xs !! (numberOfOrders `div` 2)
+                                last   = unit_price $ xs !! numberOfOrders
+                             in if first > last
+                                  then TopOrders first middle last
+                                  else TopOrders last middle first
