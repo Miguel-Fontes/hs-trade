@@ -33,7 +33,7 @@ Exemplo:
 - [x] CI - Adicionar testes, atingindo alta cobertura (#E7)
 - [x] CI - Automatizar geração de GitHub Release via Travis (#E7)
 - [ ] Ofertas - Exibir mais informações sobre os ranges de trades nos dados agrupados (limites do range; 30.000 ~ 40.000: 132) (#E4)
-- [ ] Ofertas - Exibir para venda e compra, o trade no topo, fundo e meio do Book de Ofertas (#E4)
+- [x] Ofertas - Exibir para venda e compra, o trade no topo, fundo e meio do Book de Ofertas (#E10)
 
 ### v1.2.0
 - [ ] Criar pacote DEB para aplicação (#E6)
@@ -46,16 +46,19 @@ Exemplo:
 - [ ] Obter dados de Trades da Plataforma (#E3)
 - [ ] Gerar gráfico Candlestick com Trades (#E3)
 - [ ] Mover lógica de binário Main para Módulo especializado (#??)
-- [ ] Configurar Travis para construir aplicação em OS Windows
+- [ ] Configurar Travis para construir aplicação em OS Windows (#??)
+- [ ] Remover ações IO () de módulos Ticker e Orders (#??)
+- [ ] Remover de módulos Order e Ticker formatação para console (#??)
+- [ ] Criar Datatype para Ordergroup e remover a necessidade da função prettify
 
 ## Estórias
 - [x] #E1 - Como um usuário, desejo obter o Ticker da plataforma, para que possa saber estatísticas úteis das últimas 24h de operações
 - [x] #E2 - Como um usuário, desejo obter o livro de ofertas da plataforma, para que eu possa saber estatísticas úteis das últimas operações como: valor total em compras / vendas, média de valor de compra / venda e diferença entre valor total de compras e vendas
 - [ ] #E3 - Como um usuário, desejo obter os dados de Trades da plataforma em um gráfico Candlestick, para que possa ter uma visão do histórico de operações executadas e planejar minhas próximas operações e estratégias
-- [ ] #E4 - Como um usuário, desejo visualizar as ordens de compra e venda por uma valor de distribuição arbitrário, para que eu possa ter uma visão de alto nível das ofertas em livro e identificar tendências do mercado
+- [x] #E4 - Como um usuário, desejo visualizar as ordens de compra e venda por uma valor de distribuição arbitrária, para que eu possa ter uma visão de alto nível das ofertas em livro e identificar tendências do mercado
 - [ ] #E5 - Como um usuário, desejo ter acesso à um guia sobre a utilização da aplicação, para que eu possa conhecer todas as opções disponíveis e aprender sobre como utilizar a aplicação.
 - [ ] #E6 - Como um usuário, desejo instalar a aplicação através de um Instalador / Package Manager, para que eu possa instalar e atualizar a aplicação com um único comando.
-- [ ] #E7 - Como um desenvolvedor, desejo que a aplicação esteja configurada em um pipeline de integração contínua, para que eu possa ter certeza de que o codebase está em bom estado, identificar problemas cedo e corrigí-los rapidamente.
+- [x] #E7 - Como um desenvolvedor, desejo que a aplicação esteja configurada em um pipeline de integração contínua, para que eu possa ter certeza de que o codebase está em bom estado, identificar problemas cedo e corrigí-los rapidamente.
 - [ ] #E8 - Como um usuário, desejo ter visualizar dados passados pelo aplicativo, para que eu possa visualizar a evolução do mercado e identificar tendências
 - [ ] #E9 - Como um usuário, desejo exportar os dados de Ticker para um arquivo persistente e em formato compatível com worksheet, para que eu possa analisar e criar estatísticas próprias
-- [ ] #E10 - Como um usuário, desejo exportar os dados de Ordens para um arquivo persistente e em formato compatível com worksheet, para que eu possa analisar e criar estatísticas próprias
+- [ ] #E10 - Como um usuário, desejo visualizar as ordens de compra e venda do topo, meio, e fundo do book de ofertas, para ter uma visão da varição de preços do mercado

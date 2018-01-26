@@ -8,6 +8,7 @@ order1 = Order 10000 "SOME CODE" 100
 order2 = Order 20000 "SOME CODE" 200
 order3 = Order 30000 "SOME CODE" 300
 entries1 = Entries [order1, order2] [order2, order3]
+entries2 = Entries [order1, order2, order3] [order3, order2, order1]
 
 test :: IO ()
 test = hspec $ do
@@ -46,3 +47,11 @@ test = hspec $ do
   describe "prettify" $ do
     it "return an Ordergroup prettified" $
       prettify (generateBidsOrderGroups 0 10000 entries1) `shouldBe` "10000.0: 1\n20000.0: 1\n"
+
+  describe "order highlights" $ do
+    it "should return asks highlights in the correct order" $
+      asksOrdersHighlights entries2 `shouldBe` TopOrders (30000.0) (20000.0) (10000.0)
+
+    it "should return bids highlights in the correct order" $
+      bidsOrdersHighlights entries2 `shouldBe` TopOrders (30000.0) (20000.0) (10000.0)
+
